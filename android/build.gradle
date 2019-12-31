@@ -1,0 +1,146 @@
+
+buildscript {
+    //Buildscript is evaluated before everything else so we can't use getExtOrDefault
+    def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['ReactNativeWebView_kotlinVersion']
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        //noinspection DifferentKotlinGradleVersion
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+def getExtOrDefault(name) {
+    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['ReactNativeAlibc_' + name]
+}
+
+def getExtOrIntegerDefault(name) {
+    return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties['ReactNativeAlibc_' + name]).toInteger()
+}
+
+apply plugin: 'com.android.library'
+//apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
+    buildToolsVersion getExtOrDefault('buildToolsVersion')
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    lintOptions {
+        disable 'GradleCompatible'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+repositories {
+    mavenCentral()
+    maven {
+        url "http://repo.baichuan-android.taobao.com/content/groups/BaichuanRepositories/"
+    }
+    google()
+    def found = false
+    def defaultDir = null
+    def androidSourcesName = 'React Native sources'
+
+    if (rootProject.ext.has('reactNativeAndroidRoot')) {
+        defaultDir = rootProject.ext.get('reactNativeAndroidRoot')
+    } else {
+        defaultDir = new File(
+                projectDir,
+                '/../../../node_modules/react-native/android'
+        )
+    }
+
+    if (defaultDir.exists()) {
+        maven {
+            url defaultDir.toString()
+            name androidSourcesName
+        }
+
+        logger.info(":${project.name}:reactNativeAndroidRoot ${defaultDir.canonicalPath}")
+        found = true
+    } else {
+        def parentDir = rootProject.projectDir
+
+        1.upto(5, {
+            if (found) return true
+            parentDir = parentDir.parentFile
+
+            def androidSourcesDir = new File(
+                    parentDir,
+                    'node_modules/react-native'
+            )
+
+            def androidPrebuiltBinaryDir = new File(
+                    parentDir,
+                    'node_modules/react-native/android'
+            )
+
+            if (androidPrebuiltBinaryDir.exists()) {
+                maven {
+                    url androidPrebuiltBinaryDir.toString()
+                    name androidSourcesName
+                }
+
+                logger.info(":${project.name}:reactNativeAndroidRoot ${androidPrebuiltBinaryDir.canonicalPath}")
+                found = true
+            } else if (androidSourcesDir.exists()) {
+                maven {
+                    url androidSourcesDir.toString()
+                    name androidSourcesName
+                }
+
+                logger.info(":${project.name}:reactNativeAndroidRoot ${androidSourcesDir.canonicalPath}")
+                found = true
+            }
+        })
+    }
+
+    def kotlin_version = getExtOrDefault('kotlinVersion')
+    dependencies {
+//        implementation "com.facebook.react:react-native:0.61.5"  // From node_modules
+        api 'com.facebook.react:react-native:+'
+//        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+        //支付宝（可选）
+//    implementation 'com.alipay.android.app.cashier:standardcashier-single:15.6.5@aar'
+//    compileOnly 'com.alipay.mobile.android.securitysdk:apsecuritysdk-all:3.3.0'
+        //登陆
+        implementation 'com.ali.auth.sdk:alibabauth_core:2.0.0.6@aar'
+        implementation 'com.ali.auth.sdk:alibabauth_ui:2.0.0.6@aar'
+        implementation 'com.ali.auth.sdk:alibabauth_ext:2.0.0.6@aar'
+        //安全组件
+        implementation 'com.taobao.android:securityguardaar3:5.4.171@aar'
+        implementation 'com.taobao.android:securitybodyaar3:5.4.99@aar'
+        implementation 'com.taobao.android:avmpaar3:5.4.36@aar'
+        implementation 'com.taobao.android:sgmiddletieraar3:5.4.9@aar'
+        //Mtop
+        implementation 'com.taobao.android:mtopsdk_allinone_open:3.1.2.5@jar'
+        //applink
+        implementation 'com.alibaba.sdk.android:alibc_link_partner:4.1.15@aar'
+        //ut
+        implementation 'com.taobao.android:utdid4all:1.5.2'
+        implementation 'com.alibaba.mtl:app-monitor-sdk:2.6.4.5_for_bc'
+        // 电商基础组件
+        implementation 'com.alibaba.sdk.android:AlibcTradeCommon:4.0.0.8@aar'
+        implementation 'com.alibaba.sdk.android:AlibcTradeBiz:4.0.0.8@aar'
+        implementation 'com.alibaba.sdk.android:nb_trade:4.0.0.8@aar'
+        implementation 'com.alibaba:fastjson:1.2.41'
+    }
+}
