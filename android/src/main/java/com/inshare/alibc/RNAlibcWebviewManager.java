@@ -9,6 +9,7 @@ public class RNAlibcWebviewManager extends SimpleViewManager {
     @Override
     public String getName() {
         return null;
+        
     }
 
     @Override
