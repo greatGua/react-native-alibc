@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04DE2CEC23C43ABF0048E63E /* RNAlibcBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE2CEB23C43ABF0048E63E /* RNAlibcBridge.m */; };
-		04DE2CF123C567B00048E63E /* Hs_RNAliBCWebview.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE2CF023C567B00048E63E /* Hs_RNAliBCWebview.m */; };
-		04DE2CF423C568F80048E63E /* HS_AliBCWKProcessPoolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE2CF323C568F80048E63E /* HS_AliBCWKProcessPoolManager.m */; };
-		04DE2CF723C56AB40048E63E /* Hs_AliBCWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE2CF623C56AB40048E63E /* Hs_AliBCWebViewManager.m */; };
 		04DE2D1923C6CD370048E63E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE2D1823C6CD370048E63E /* libsqlite3.tbd */; };
 		04DE2D1B23C6CD500048E63E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE2D1A23C6CD500048E63E /* libz.tbd */; };
 		04DE2D1D23C6CD570048E63E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE2D1C23C6CD570048E63E /* CoreTelephony.framework */; };
 		04DE2D1F23C6CD690048E63E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DE2D1E23C6CD690048E63E /* CoreMotion.framework */; };
-		B3E7B58A1CC2AC0600A0062D /* RNAlibc.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNAlibc.m */; };
+		04DE2DB423C737C40048E63E /* Hs_RNAliBCWebview.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE2DA023C737C30048E63E /* Hs_RNAliBCWebview.m */; };
+		04DE2DB523C737C40048E63E /* Hs_AliBCWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE2DA123C737C30048E63E /* Hs_AliBCWebViewManager.m */; };
+		04DE2DB623C737C40048E63E /* RNAlibc.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE2DA223C737C30048E63E /* RNAlibc.m */; };
+		04DE2DB723C737C40048E63E /* HS_AliBCWKProcessPoolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE2DA323C737C30048E63E /* HS_AliBCWKProcessPoolManager.m */; };
+		04DE2DB823C737C40048E63E /* RNAlibcBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE2DA423C737C30048E63E /* RNAlibcBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,23 +31,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		041B20E923C4198000A67336 /* mtopsdk_configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mtopsdk_configuration.plist; sourceTree = "<group>"; };
-		04DE2CEA23C43ABF0048E63E /* RNAlibcBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAlibcBridge.h; sourceTree = "<group>"; };
-		04DE2CEB23C43ABF0048E63E /* RNAlibcBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAlibcBridge.m; sourceTree = "<group>"; };
-		04DE2CEF23C567B00048E63E /* Hs_RNAliBCWebview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hs_RNAliBCWebview.h; sourceTree = "<group>"; };
-		04DE2CF023C567B00048E63E /* Hs_RNAliBCWebview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hs_RNAliBCWebview.m; sourceTree = "<group>"; };
-		04DE2CF223C568F80048E63E /* HS_AliBCWKProcessPoolManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HS_AliBCWKProcessPoolManager.h; sourceTree = "<group>"; };
-		04DE2CF323C568F80048E63E /* HS_AliBCWKProcessPoolManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HS_AliBCWKProcessPoolManager.m; sourceTree = "<group>"; };
-		04DE2CF523C56AB40048E63E /* Hs_AliBCWebViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hs_AliBCWebViewManager.h; sourceTree = "<group>"; };
-		04DE2CF623C56AB40048E63E /* Hs_AliBCWebViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hs_AliBCWebViewManager.m; sourceTree = "<group>"; };
 		04DE2D1823C6CD370048E63E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
 		04DE2D1A23C6CD500048E63E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		04DE2D1C23C6CD570048E63E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		04DE2D1E23C6CD690048E63E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
+		04DE2D8523C737C30048E63E /* RNAlibc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAlibc.h; sourceTree = "<group>"; };
+		04DE2D8623C737C30048E63E /* Hs_AliBCWebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hs_AliBCWebViewManager.h; sourceTree = "<group>"; };
+		04DE2D8723C737C30048E63E /* Hs_RNAliBCWebview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hs_RNAliBCWebview.h; sourceTree = "<group>"; };
+		04DE2D8823C737C30048E63E /* mtopsdk_configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mtopsdk_configuration.plist; sourceTree = "<group>"; };
+		04DE2D8923C737C30048E63E /* RNAlibcBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAlibcBridge.h; sourceTree = "<group>"; };
+		04DE2D8A23C737C30048E63E /* HS_AliBCWKProcessPoolManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HS_AliBCWKProcessPoolManager.h; sourceTree = "<group>"; };
+		04DE2DA023C737C30048E63E /* Hs_RNAliBCWebview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hs_RNAliBCWebview.m; sourceTree = "<group>"; };
+		04DE2DA123C737C30048E63E /* Hs_AliBCWebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hs_AliBCWebViewManager.m; sourceTree = "<group>"; };
+		04DE2DA223C737C30048E63E /* RNAlibc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAlibc.m; sourceTree = "<group>"; };
+		04DE2DA323C737C30048E63E /* HS_AliBCWKProcessPoolManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HS_AliBCWKProcessPoolManager.m; sourceTree = "<group>"; };
+		04DE2DA423C737C30048E63E /* RNAlibcBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAlibcBridge.m; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libRNAlibc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAlibc.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C55C1BFF146DD23295F821 /* Pods-RNAlibc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNAlibc.release.xcconfig"; path = "Target Support Files/Pods-RNAlibc/Pods-RNAlibc.release.xcconfig"; sourceTree = "<group>"; };
-		B3E7B5881CC2AC0600A0062D /* RNAlibc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAlibc.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* RNAlibc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAlibc.m; sourceTree = "<group>"; };
 		BC365307E292D47A081FF78D /* Pods_RNAlibc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RNAlibc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D785DEACAC0CFF35406F5EC3 /* Pods-RNAlibc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNAlibc.debug.xcconfig"; path = "Target Support Files/Pods-RNAlibc/Pods-RNAlibc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +67,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04DE2D8423C737C30048E63E /* RNAlibc */ = {
+			isa = PBXGroup;
+			children = (
+				04DE2D8523C737C30048E63E /* RNAlibc.h */,
+				04DE2DA223C737C30048E63E /* RNAlibc.m */,
+				04DE2D8623C737C30048E63E /* Hs_AliBCWebViewManager.h */,
+				04DE2DA023C737C30048E63E /* Hs_RNAliBCWebview.m */,
+				04DE2D8723C737C30048E63E /* Hs_RNAliBCWebview.h */,
+				04DE2DA123C737C30048E63E /* Hs_AliBCWebViewManager.m */,
+				04DE2D8823C737C30048E63E /* mtopsdk_configuration.plist */,
+				04DE2D8923C737C30048E63E /* RNAlibcBridge.h */,
+				04DE2DA423C737C30048E63E /* RNAlibcBridge.m */,
+				04DE2D8A23C737C30048E63E /* HS_AliBCWKProcessPoolManager.h */,
+				04DE2DA323C737C30048E63E /* HS_AliBCWKProcessPoolManager.m */,
+			);
+			path = RNAlibc;
+			sourceTree = "<group>";
+		};
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,17 +117,7 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				04DE2CF523C56AB40048E63E /* Hs_AliBCWebViewManager.h */,
-				04DE2CF623C56AB40048E63E /* Hs_AliBCWebViewManager.m */,
-				04DE2CF223C568F80048E63E /* HS_AliBCWKProcessPoolManager.h */,
-				04DE2CF323C568F80048E63E /* HS_AliBCWKProcessPoolManager.m */,
-				04DE2CEF23C567B00048E63E /* Hs_RNAliBCWebview.h */,
-				04DE2CF023C567B00048E63E /* Hs_RNAliBCWebview.m */,
-				04DE2CEA23C43ABF0048E63E /* RNAlibcBridge.h */,
-				04DE2CEB23C43ABF0048E63E /* RNAlibcBridge.m */,
-				041B20E923C4198000A67336 /* mtopsdk_configuration.plist */,
-				B3E7B5881CC2AC0600A0062D /* RNAlibc.h */,
-				B3E7B5891CC2AC0600A0062D /* RNAlibc.m */,
+				04DE2D8423C737C30048E63E /* RNAlibc */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				1C4550EE47264F981E8D4C07 /* Pods */,
 				289ABF75241ADB7A08197029 /* Frameworks */,
@@ -199,11 +207,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04DE2CF423C568F80048E63E /* HS_AliBCWKProcessPoolManager.m in Sources */,
-				04DE2CEC23C43ABF0048E63E /* RNAlibcBridge.m in Sources */,
-				04DE2CF123C567B00048E63E /* Hs_RNAliBCWebview.m in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* RNAlibc.m in Sources */,
-				04DE2CF723C56AB40048E63E /* Hs_AliBCWebViewManager.m in Sources */,
+				04DE2DB723C737C40048E63E /* HS_AliBCWKProcessPoolManager.m in Sources */,
+				04DE2DB423C737C40048E63E /* Hs_RNAliBCWebview.m in Sources */,
+				04DE2DB523C737C40048E63E /* Hs_AliBCWebViewManager.m in Sources */,
+				04DE2DB823C737C40048E63E /* RNAlibcBridge.m in Sources */,
+				04DE2DB623C737C40048E63E /* RNAlibc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,13 +321,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D785DEACAC0CFF35406F5EC3 /* Pods-RNAlibc.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/AlibcTradeSDK/Frameworks";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/AlibcTradeSDK/Frameworks",
+					"$(PROJECT_DIR)/RNAlibc/AlibcTradeSDK/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
-					"$(SRCROOT)/../../xcode_Project/LibsDebugProject/ios/Pods/Headers/**",
 				);
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -336,13 +346,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 64C55C1BFF146DD23295F821 /* Pods-RNAlibc.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/AlibcTradeSDK/Frameworks";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/AlibcTradeSDK/Frameworks",
+					"$(PROJECT_DIR)/RNAlibc/AlibcTradeSDK/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
-					"$(SRCROOT)/../../xcode_Project/LibsDebugProject/ios/Pods/Headers/**",
 				);
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;

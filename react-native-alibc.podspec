@@ -10,10 +10,16 @@ Pod::Spec.new do |s|
 
   s.authors      = package['author']
   s.homepage     = package['homepage']
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "9.0"
 
   s.source       = { :git => "https://github.com/greatGua/react-native-alibc.git", :tag => "v#{s.version}" }
-  s.source_files  = "ios/**/*.{h,m}"
+  s.source_files  = "ios/RNAlibc/*.{h,m}"
+
+  s.preserve_paths  = "*.js"
+  s.frameworks      = 'CoreTelephony','CoreMotion'
+  s.vendored_frameworks = "ios/RNAlibc/AlibcTradeSDK/Frameworks/*.framework" #工程依赖的第三方framework
+  s.libraries       = 'libz','libsqlite3'
+  # s.vendored_libraries = "ios/RNAlibc/*.a"
 
   s.dependency 'React'
 end
