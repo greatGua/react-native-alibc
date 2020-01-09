@@ -5,7 +5,10 @@
 #import <React/RCTBridgeModule.h>
 #endif
 
-@interface RNAlibc : NSObject <RCTBridgeModule>
+#import <React/RCTEventEmitter.h>
+#import "RNAlibcBridge.h"
+
+@interface RNAlibc : RCTEventEmitter <RCTBridgeModule>
 
 @end
   

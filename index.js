@@ -1,6 +1,8 @@
 
 import { NativeModules } from 'react-native';
+import AliBCWebView from './lib/AliBCWebView';
 
-const { RNAlibc } = NativeModules;
+const { RNAliBC } = NativeModules;
 
-export default RNAlibc;
+export { AliBCWebView, RNAliBC };
+export default RNAliBC;

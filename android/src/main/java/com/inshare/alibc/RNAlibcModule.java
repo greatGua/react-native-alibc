@@ -6,11 +6,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.webkit.WebChromeClient;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 import com.ali.auth.third.core.broadcast.LoginAction;
 import com.ali.auth.third.core.model.Session;
@@ -42,6 +43,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.uimanager.IllegalViewOperationException;
 import com.inshare.alibc.utils.Hs_IDFinder;
 import com.inshare.alibc.utils.Hs_Map;
@@ -54,10 +56,11 @@ import javax.annotation.Nullable;
 
 import static com.inshare.alibc.utils.Hs_RnUtil.sendEvent;
 
+@ReactModule(name = RNAlibcModule.REACT_CLASS)
 public class RNAlibcModule extends ReactContextBaseJavaModule {
   private final ReactApplicationContext reactApplicationContext;
   private final Context reactContext;
-  public static final String MODULE_NAME = "RNAlibc";
+  public static final String REACT_CLASS = "RNAliBC";
 
   private static final int PAGETYPE_DETAIL = 0;
   private static final int PAGETYPE_SHOP = 1;
@@ -65,14 +68,19 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
   private static final int PAGETYPE_MYORDERS = 3;
   private static final int PAGETYPE_MYCARTS = 4;
 
-  private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
+  private final ActivityEventListener mActivityEventListener = new ActivityEventListener() {
     @Override
-    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
-      CallbackContext.onActivityResult(requestCode, resultCode, intent);
+    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
+      CallbackContext.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+
     }
   };
 
-  public RNAlibcModule(@NonNull ReactApplicationContext reactContext) {
+  public RNAlibcModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
     this.reactApplicationContext = reactContext;
@@ -87,10 +95,10 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
       return mRNModuleAlibc;
   }
 
-  @NonNull
+
   @Override
   public String getName() {
-    return MODULE_NAME;
+    return REACT_CLASS;
   }
 
   /**
@@ -100,17 +108,17 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
   @Override
   public Map<String, Object> getConstants() {
     final Map<String, Object> constants = new HashMap<>();
-    constants.put("typeDetail", PAGETYPE_DETAIL);
-    constants.put("typeShop", PAGETYPE_SHOP);
-    constants.put("typeAddCart", PAGETYPE_ADDCART);
-    constants.put("typeMyOrders", PAGETYPE_MYORDERS);
-    constants.put("typeMyCarts", PAGETYPE_MYCARTS);
+    constants.put("TYPE_DETAIL", PAGETYPE_DETAIL);
+    constants.put("TYPE_SHOP", PAGETYPE_SHOP);
+    constants.put("TYPE_ADDCART", PAGETYPE_ADDCART);
+    constants.put("TYPE_MYORDERS", PAGETYPE_MYORDERS);
+    constants.put("TYPE_MYCARTS", PAGETYPE_MYCARTS);
     return constants;
   }
 
   @ReactMethod
-  public void setDebug(ReadableMap map, Promise promise) {
-    if(map.getBoolean("debug")) {
+  public void setDebug(boolean isDebug) {
+    if(isDebug) {
       AlibcTradeCommon.turnOnDebug();
     }else{
       AlibcTradeCommon.turnOffDebug();
@@ -127,7 +135,7 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
       kyinyong.setImageResource(resId);
     }
 
-    if(rnParams.optBoolean("debug",true)) {
+    if(rnParams.optBoolean("debug",false)) {
       AlibcTradeCommon.turnOnDebug();
     }else{
       AlibcTradeCommon.turnOffDebug();
@@ -148,23 +156,23 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void setIsAuthVip(ReadableMap map, Promise promise) {
-    AlibcTradeSDK.setIsAuthVip(new Hs_Map(map).optBoolean("isVip",true));
+  public void setIsAuthVip(boolean isVip) {
+    AlibcTradeSDK.setIsAuthVip(isVip);
   }
 
   @ReactMethod
-  public void setSyncForTaoke(ReadableMap map, Promise promise){
-    boolean isSuccess = AlibcTradeSDK.setSyncForTaoke(new Hs_Map(map).optBoolean("isSyncForTaoke",true));
+  public void setSyncForTaoke(boolean isSyncForTaoke, Promise promise){
+    boolean isSuccess = AlibcTradeSDK.setSyncForTaoke(isSyncForTaoke);
     statusBack(isSuccess,"",promise);
   }
 
   @ReactMethod
-  public void setUseAlipayNative(ReadableMap map){
-    AlibcTradeSDK.setShouldUseAlipay(new Hs_Map(map).optBoolean("isShould",true));
+  public void setUseAlipayNative(boolean isShould){
+    AlibcTradeSDK.setShouldUseAlipay(isShould);
   }
 
   @ReactMethod
-  public void setChannel(ReadableMap map, Promise promise){
+  public void setChannel(ReadableMap map){
     Hs_Map paramDict = new Hs_Map(map);
     String typeName = paramDict.optString("typeName","0");
     String channelName = paramDict.optString("channelName",null);
@@ -307,14 +315,13 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
 
 
   @ReactMethod
-  public void destory(Promise promise){
+  public void destory(){
     AlibcTradeSDK.destory();
-//        successBack(0,"",promise);
   }
 
   //获取用户信息
   @ReactMethod
-  public void getUserInfo(ReadableMap map,Promise promise) {
+  public void getUserInfo(Promise promise) {
     Session session = AlibcLogin.getInstance().getSession();
     if(session == null || !AlibcLogin.getInstance().isLogin()){
       statusBack(false,null,promise);
@@ -324,8 +331,8 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void openByUrl(final int type, ReadableMap map,final Promise promise) {
-    openUrlByAli(type, map, promise);
+  public void openByUrl(ReadableMap map,final Promise promise) {
+    openUrlByAli(map, promise);
   }
 
   @ReactMethod
@@ -395,7 +402,7 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
     });
   }
 
-  private void openUrlByAli(final int type, ReadableMap map,final Promise promise){
+  private void openUrlByAli(ReadableMap map,final Promise promise){
     Hs_Map paramDict = new Hs_Map(map);
     String url = paramDict.optString("url",paramDict.optString("itemId"));
     if(TextUtils.isEmpty(url)){
@@ -445,6 +452,7 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
    * itemId 支持itemId和openItemId的商品，必填，不允许为null；
    *               eg.37196464781L；AAHd5d-HAAeGwJedwSnHktBI；
    */
+  @ReactMethod
   public void showAddCartPage(ReadableMap map,Promise promise) {
     openPageByAli(PAGETYPE_ADDCART,map,promise);
   }
@@ -455,10 +463,12 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
    *  status   默认跳转页面；填写：0：全部；1：待付款；2：待发货；3：待收货；4：待评价
    *  allOrder false 进行订单分域（只展示通过当前app下单的订单），true 显示所有订单
    */
+  @ReactMethod
   public void showMyOrders(ReadableMap map,Promise promise) {
     openPageByAli(PAGETYPE_MYORDERS,map,promise);
   }
 
+  @ReactMethod
   public void showMyCarts(ReadableMap map,Promise promise) {
     openPageByAli(PAGETYPE_MYCARTS,map,promise);
   }
@@ -466,13 +476,15 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
    * 店铺页面
    *  shopId 店铺id，支持明文id
    */
+  @ReactMethod
   public void showShopPage(ReadableMap map,Promise promise) {
     openPageByAli(PAGETYPE_SHOP,map,promise);
   }
 
-  public void showPageByUrl(ReadableMap map,Promise promise) {
-    openUrlByAli(PAGETYPE_ADDCART,map,promise);
-  }
+//  @ReactMethod
+//  public void showPageByUrl(ReadableMap map,Promise promise) {
+//    openUrlByAli(map,promise);
+//  }
 
   public static AlibcShowParams getShowParams(ReadableMap map){
     Hs_Map paramDict = new Hs_Map(map);
@@ -523,7 +535,7 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
     }
     return showParams;
   }
-  private AlibcTaokeParams getTaokeParam(ReadableMap map){
+  public static AlibcTaokeParams getTaokeParam(ReadableMap map){
     Hs_Map paramDict = new Hs_Map(map);
     String pid = paramDict.optString("pid","");
     String unionId = paramDict.optString("unionId","");
@@ -542,7 +554,7 @@ public class RNAlibcModule extends ReactContextBaseJavaModule {
     }
     return taokeParams;
   }
-  private Map<String, String> getTrackParams(ReadableMap map){
+  public static Map<String, String> getTrackParams(ReadableMap map){
     Hs_Map paramDict = new Hs_Map(map);
     String appIsvCode = paramDict.optString("isvCode");
     Map<String, String> exParams;

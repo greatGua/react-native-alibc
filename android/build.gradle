@@ -1,17 +1,18 @@
 
 buildscript {
     //Buildscript is evaluated before everything else so we can't use getExtOrDefault
-    def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['ReactNativeWebView_kotlinVersion']
+    def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['ReactNativeAlibc_kotlinVersion']
 
     repositories {
         google()
+        mavenCentral()  //注意下这个顺序，放在jcenter()上面
         jcenter()
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
         //noinspection DifferentKotlinGradleVersion
-//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -54,6 +55,8 @@ repositories {
         url "http://repo.baichuan-android.taobao.com/content/groups/BaichuanRepositories/"
     }
     google()
+    jcenter()
+    maven { url 'https://jitpack.io' }
     def found = false
     def defaultDir = null
     def androidSourcesName = 'React Native sources'
@@ -111,12 +114,18 @@ repositories {
             }
         })
     }
-
+//    allprojects {
+//        repositories {
+//            maven { url "$rootDir/../../xcode_Project/LibsDebugProject/node_modules/react-native/android" }
+//        }
+//    }
     def kotlin_version = getExtOrDefault('kotlinVersion')
     dependencies {
-//        implementation "com.facebook.react:react-native:0.61.5"  // From node_modules
+//        api "com.facebook.react:react-native:0.60.5"  // From node_modules
         api 'com.facebook.react:react-native:+'
-//        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+//        implementation "com.github.react-native-community:react-native-webview.android:8.0.2"
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
         //支付宝（可选）
 //    implementation 'com.alipay.android.app.cashier:standardcashier-single:15.6.5@aar'

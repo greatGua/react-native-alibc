@@ -1,7 +1,7 @@
 
 package com.inshare.alibc;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +13,10 @@ import com.facebook.react.bridge.JavaScriptModule;
 public class RNAlibcPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Collections.singletonList((NativeModule) RNAlibcModule.sharedInstance(reactContext));
+        List<NativeModule> modules = new ArrayList<>();
+        modules.add(RNAlibcModule.sharedInstance(reactContext));
+        modules.add(new RNAlibcWebviewModule(reactContext));
+        return modules;
     }
 
     // Deprecated from RN 0.47
@@ -23,6 +26,6 @@ public class RNAlibcPackage implements ReactPackage {
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-      return Collections.emptyList();
+        return Collections.singletonList(new RNAlibcWebviewManager());
     }
 }
